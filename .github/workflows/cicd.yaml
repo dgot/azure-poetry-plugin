@@ -33,16 +33,23 @@ jobs:
       - name: Run Tests and Obtain Coverage
         run: bash .devops/scripts/run-test.sh
 
-      - name: Check For Test Result Reports
-        id: check_files
+      - name: Check For Test Report
+        id: test_report_exists
         uses: andstor/file-existence-action@v3
         with:
-          files: "test-report.xml, test-report.html, coverage.xml, .coverage"
+          files: "test-report.xml, test-report.html"
+
+      - name: Check For Coverage Report
+        id: coverage_report_exists
+        uses: andstor/file-existence-action@v3
+        with:
+          files: "coverage.xml, .coverage"
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.test_report_exists.outputs.files_exists == 'true'
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           check_name: Test Results (Python ${{ matrix.python-version }})
           report_individual_runs: true
           report_suite_logs: any
@@ -53,7 +60,7 @@ jobs:
 
       - name: Publish Coverage
         uses: orgoro/coverage@v3.1
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.coverage_report_exists.outputs.files_exists == 'true'
         with:
-            coverageFile: coverage.xml
             token: ${{ secrets.GITHUB_TOKEN }}
+            coverageFile: coverage.xml
