@@ -50,7 +50,7 @@ jobs:
         if: steps.test_report_exists.outputs.files_exists == 'true'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          check_name: Test Results (Python ${{ matrix.python-version }})
+          check_name: Test Results (Python ${{ matrix.python_version }})
           report_individual_runs: true
           report_suite_logs: any
           test_changes_limit: 0
