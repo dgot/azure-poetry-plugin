@@ -67,6 +67,10 @@ jobs:
         shell: bash
         run: bash .devops/scripts/run-install-poetry.sh
 
+      - name: Update PATH
+        shell: bash
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+
       - name: Check distributions
         run: |
           ls -la dist
