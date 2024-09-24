@@ -1,5 +1,8 @@
 # Azure Poetry Plugin
 
+[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
+[![Tests](https://github.com/dgot/azure-poetry-plugin/actions/workflows/cicd.yaml/badge.svg)](https://github.com/dgot/azure-poetry-plugin/actions/workflows/cicd.yaml)
+
 A poetry plugin for an easy and uniform way of configuring azure devops artifact feeds with Poetry, without any `.NET` dependencies or complicated poetry commands.
 
 ## How to install
@@ -20,7 +23,7 @@ poetry azure add <index-url> --username <value> --access-token <value>
 Or with the name of the `organization` and artifact `feed-name`.
 
 ```bash
-poetry azure add --organization <value> --feed-name <value> --username <email> --access-token <PAT>
+poetry azure add --organization "<value>" --feed-name "<value>" --username "<email>" --access-token "<PAT>"
 ```
 
 ## How do i get an Access Token?
