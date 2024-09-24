@@ -64,3 +64,5 @@ jobs:
         with:
             token: ${{ secrets.GITHUB_TOKEN }}
             coverageFile: coverage.xml
+            thresholdNew: 0.0  # threshold controlled by .devops/scripts/run-test.sh
+            thresholdModified: 0.0  # threshold controlled by .devops/scripts/run-test.sh
