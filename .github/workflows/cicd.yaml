@@ -1,0 +1,59 @@
+name: CI/CD pipeline
+on: pull_request
+
+jobs:
+  python-cicd:
+    name: Python CI/CD
+    runs-on: ubuntu-22.04
+    permissions: write-all
+    strategy:
+      fail-fast: true
+      matrix:
+        python_version: [
+          "3.10",
+          # "3.11",
+          # "3.12",
+        ]
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Install Project
+        shell: bash
+        run: bash .devops/scripts/run-install.sh
+
+      - name: Run Lint
+        shell: bash
+        run: bash .devops/scripts/run-lint.sh
+
+      - name: Run Type Check
+        shell: bash
+        run: bash .devops/scripts/run-type-check.sh
+
+      - name: Run Tests and Obtain Coverage
+        run: bash .devops/scripts/run-test.sh
+
+      - name: Check For Test Result Reports
+        id: check_files
+        uses: andstor/file-existence-action@v3
+        with:
+          files: "test-report.xml, test-report.html, coverage.xml, .coverage"
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          check_name: Test Results (Python ${{ matrix.python-version }})
+          report_individual_runs: true
+          report_suite_logs: any
+          test_changes_limit: 0
+          check_run_annotations_branch: "*"
+          files: |
+            test-report.xml
+
+      - name: Publish Coverage
+        uses: orgoro/coverage@v3.1
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+            coverageFile: coverage.xml
+            token: ${{ secrets.GITHUB_TOKEN }}
