@@ -58,12 +58,12 @@ jobs:
           files: |
             test-report.xml
 
-      - name: Publish Coverage
-        uses: orgoro/coverage@v3.1
-        if: steps.coverage_report_exists.outputs.files_exists == 'true'
-        with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            coverageFile: coverage.xml
-            thresholdAll: 0.0  # threshold controlled by .devops/scripts/run-test.sh
-            thresholdNew: 0.0  # threshold controlled by .devops/scripts/run-test.sh
-            thresholdModified: 0.0  # threshold controlled by .devops/scripts/run-test.sh
+      # - name: Publish Coverage
+      #   uses: orgoro/coverage@v3.1
+      #   if: steps.coverage_report_exists.outputs.files_exists == 'true'
+      #   with:
+      #       token: ${{ secrets.GITHUB_TOKEN }}
+      #       coverageFile: coverage.xml
+      #       thresholdAll: 0.0  # threshold controlled by .devops/scripts/run-test.sh
+      #       thresholdNew: 0.0  # threshold controlled by .devops/scripts/run-test.sh
+      #       thresholdModified: 0.0  # threshold controlled by .devops/scripts/run-test.sh
