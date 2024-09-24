@@ -1,0 +1,43 @@
+fail_fast: true
+repos:
+# =========================================================================== #
+# DEFAULT                                                                     #
+# =========================================================================== #
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-merge-conflict  # check for no merge conflict code
+    always_run: true
+  - id: debug-statements  # checks for breakpoint()
+    always_run: true
+
+# =========================================================================== #
+# CONTINIOUS INTEGRATION                                                      #
+# =========================================================================== #
+- repo: local
+  hooks:
+  - id: run-lint
+    name: Code Linting
+    always_run: true
+    stages: [commit]
+    language: system
+    entry: bash .devops/scripts/run-lint.sh
+
+- repo: local
+  hooks:
+  - id: run-type-check
+    name: Static Type Check
+    always_run: true
+    stages: [commit]
+    language: system
+    entry: bash .devops/scripts/run-type-check.sh
+
+- repo: local
+  hooks:
+  - id: run-unit-tests
+    name: Testing Code
+    always_run: true
+    stages: [commit]
+    language: system
+    pass_filenames: false
+    entry: bash .devops/scripts/run-test.sh
