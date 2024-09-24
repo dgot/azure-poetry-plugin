@@ -3,4 +3,5 @@ poetry run pytest test \
     --html=test-report.html --self-contained-html \
     --cov src \
     --cov-report html \
+    --cov-report xml:coverage.xml \
     # --cov-fail-under=85 \
