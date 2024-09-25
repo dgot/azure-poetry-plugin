@@ -1,5 +1,7 @@
 name: CI/CD pipeline
-on: push
+on:
+  push:
+    branches: [main]
 
 jobs:
   python-cicd:
