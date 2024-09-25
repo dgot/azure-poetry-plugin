@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "azure-poetry-plugin"
-version = "0.1.0rc7"
+version = "0.1.0rc8"
 description = """A poetry plugin for easy and uniform way of configuring \
 azure devops artifact feeds with Poetry, without any `.NET` dependencies or \
 complicated poetry commands."""
-
+readme = "README.md"
 authors = [
     "Daniel Gottlieb Dollerup <dgot@baselifescience.com>",
 ]

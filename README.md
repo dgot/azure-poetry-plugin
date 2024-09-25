@@ -3,7 +3,7 @@
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 [![Tests](https://github.com/dgot/azure-poetry-plugin/actions/workflows/cicd.yaml/badge.svg)](https://github.com/dgot/azure-poetry-plugin/actions/workflows/cicd.yaml)
 
-A poetry plugin for an easy and uniform way of configuring azure devops artifact feeds with Poetry, without any `.NET` dependencies or complicated poetry commands.
+A poetry plugin for an easy way of configuring azure artifact feeds with Poetry, without any `.NET` dependencies.
 
 ## How to install
 
