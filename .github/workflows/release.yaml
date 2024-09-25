@@ -9,7 +9,6 @@ jobs:
 
   Build:
     runs-on: ubuntu-latest
-    environment: trunk
 
     steps:
 
@@ -45,11 +44,7 @@ jobs:
   Publish:
     needs: [Build]
     runs-on: ubuntu-latest
-    environment:
-      name: trunk
-      url: https://pypi.org/p/azure-poetry-plugin
-    permissions:
-      id-token: write
+    environment: trunk
 
     steps:
       - name: Checkout code
@@ -77,8 +72,11 @@ jobs:
         run: |
           ls -la dist
 
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Publish to PyPI
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          poetry publish
 
       - name: Create Release
         id: create_release
