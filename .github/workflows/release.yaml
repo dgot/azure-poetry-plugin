@@ -77,7 +77,7 @@ jobs:
         # env:
         #   POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
         run: |
-          poetry publish
+          poetry publish --username ${{ variables.PYPI_USERNAME }}
 
       - name: Create Release
         id: create_release
