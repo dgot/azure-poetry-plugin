@@ -1,5 +1,5 @@
 import os
-from typing import Callable, TypeAlias
+from typing import Callable
 
 from cleo.commands.command import Command
 from cleo.helpers import argument, option
@@ -16,8 +16,8 @@ from poetry.utils.password_manager import PasswordManager
 ADO_HOSTNAME = "https://pkgs.dev.azure.com"
 ADO_FEED_URL = "https://pkgs.dev.azure.com/{organization}/_packaging/{feed_name}/pypi/simple/"
 
-Organization: TypeAlias = str
-FeedName: TypeAlias = str
+Organization = str
+FeedName = str
 
 
 def set_access_token(
