@@ -17,7 +17,7 @@ Poetry plugins are installable in two ways, via `pipx inject` or `poetry self`.
 With a complete url to the artifact feed
 
 ```bash
-poetry azure add <index-url> --username <value> --access-token <value>
+poetry azure add "<index-url>" --username "<value>" --access-token "<value>"
 ```
 
 Or with the name of the `organization` and artifact `feed-name`.
