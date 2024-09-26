@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "azure-poetry-plugin"
-version = "0.1.0rc9"
+version = "0.1.1rc0"
 description = """A poetry plugin for an easy way of configuring azure \
 artifact feeds with Poetry, without any .NET dependencies."""
 readme = "README.md"
 authors = [
-    "Daniel Gottlieb Dollerup",
+    "Daniel Gottlieb Dollerup <daniel.dollerup@gmail.com>",
 ]
 packages = [
     {include = "azure_poetry_plugin", from = "src"},
@@ -82,7 +82,7 @@ max-complexity = 10
 [tool.pyright]
 exclude = ["**/test", "examples", "development"]  # No need to check for strict typing for tests
 ignore = ["**/test", "examples", "development"]  # No need to have strict typing for tests
-extraPaths = ["bases", "components"]
+extraPaths = ["src"]
 pythonPlatform = "Linux"
 typeCheckingMode = "strict"  # parameter and return types is required
 strictDictionaryInference = true  # {"a": 1, "b": "a"} infered as dict[str, int | str]
