@@ -78,13 +78,11 @@ jobs:
         run: |
           poetry publish
 
-      - name: Create Release
+      - name: Create a Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: elgohr/Github-Release-Action@v5
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-          release_name: ${{ steps.tag.outputs.tag }}
-          draft: false
-          prerelease: false
+          title: ${{ steps.tag.outputs.tag }}
+          tag: ${{ steps.tag.outputs.tag }}

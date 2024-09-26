@@ -1,5 +1,5 @@
 import os
-from typing import Callable, TypeAlias
+from typing import Callable, Union
 
 from cleo.commands.command import Command
 from cleo.helpers import argument, option
@@ -16,8 +16,8 @@ from poetry.utils.password_manager import PasswordManager
 ADO_HOSTNAME = "https://pkgs.dev.azure.com"
 ADO_FEED_URL = "https://pkgs.dev.azure.com/{organization}/_packaging/{feed_name}/pypi/simple/"
 
-Organization: TypeAlias = str
-FeedName: TypeAlias = str
+Organization = str
+FeedName = str
 
 
 def set_access_token(
@@ -35,7 +35,7 @@ def set_access_token(
 def get_access_token(
     feed_name: str,
     config: Config,
-) -> dict[str, str | None] | None:
+) -> Union[dict[str, Union[str, None]], None]:
     """Get the access token configured with poetry for the artifact feed."""
     password_manager = PasswordManager(config=config)
     access_token = password_manager.get_http_auth(repo_name=feed_name)
