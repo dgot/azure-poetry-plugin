@@ -1,8 +1,31 @@
-from azure_poetry_plugin.plugin import (
+from cleo.application import Application
+from cleo.testers.command_tester import CommandTester
+
+from azure_poetry_plugin.commands import (
     AddCommand,  # noqa: F401
-    AzurePoetryPlugin,  # noqa: F401
-)  # For type check 3.9 through 3.12
+    ConfigCommand,  # noqa: F401
+)
 
 
-def test_plugin() -> None:  # noqa: D103
-    assert True
+def test_add_command() -> None:
+    """Execute and verify the add command."""
+    application = Application()
+    application.add(AddCommand())
+
+    command = application.find("azure add")
+    command_tester = CommandTester(command)
+    command_tester.execute(
+        "test https://pkgs.dev.azure.com/test/_packaging/test/pypi/simple/",
+    )
+
+
+def test_config_command() -> None:
+    """Execute and verify the config command."""
+    application = Application()
+    application.add(ConfigCommand())
+
+    command = application.find("azure config")
+    command_tester = CommandTester(command)
+    command_tester.execute(
+        "test john@doe.com"
+    )
