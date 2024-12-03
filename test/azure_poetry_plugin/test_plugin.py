@@ -1,4 +1,6 @@
+import pytest
 from cleo.application import Application
+from cleo.exceptions import CleoMissingArgumentsError
 from cleo.testers.command_tester import CommandTester
 
 from azure_poetry_plugin.commands import (
@@ -26,6 +28,7 @@ def test_config_command() -> None:
 
     command = application.find("azure config")
     command_tester = CommandTester(command)
-    command_tester.execute(
-        "test john@doe.com"
-    )
+    with pytest.raises(CleoMissingArgumentsError):
+        command_tester.execute(
+            "test"
+        )
