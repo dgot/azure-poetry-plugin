@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 import pytest
 from cleo.application import Application
 from cleo.exceptions import CleoMissingArgumentsError
@@ -9,7 +12,18 @@ from azure_poetry_plugin.commands import (
 )
 
 
-def test_add_command() -> None:
+@pytest.fixture(scope="session")
+def poetry_config() -> Path:
+    """Ensure a poetry configuration exists."""
+    config_path = Path("~/.config/pypoetry/config.toml")
+    if not config_path.parent.exists():
+        os.makedirs(config_path.parent, exist_ok=True)
+    if not config_path.exists():
+        open(config_path, "x").close()
+    return config_path
+
+
+def test_add_command(poetry_config: Path) -> None:
     """Execute and verify the add command."""
     application = Application()
     application.add(AddCommand())
@@ -21,7 +35,7 @@ def test_add_command() -> None:
     )
 
 
-def test_config_command() -> None:
+def test_config_command(poetry_config: Path) -> None:
     """Execute and verify the config command."""
     application = Application()
     application.add(ConfigCommand())
