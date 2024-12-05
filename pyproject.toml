@@ -2,7 +2,7 @@
 name = "azure-poetry-plugin"
 version = "0.1.2rc0"
 description = """A poetry plugin for an easy way of configuring azure \
-artifact feeds with Poetry, without any .NET dependencies."""
+artifact feeds globally with Poetr."""
 readme = "README.md"
 authors = [
     "Daniel Gottlieb Dollerup <daniel.dollerup@gmail.com>",
